@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <title>MCHL Announcement</title>
+  <link rel="stylesheet" href="announcements.css" />
+</head>
+<body>
+    
+  <!-- Header  -->
+  <header class="web-header">
+    <div class="yellow">
+      <div class="header-left">
+        <img src="Photo/mchl logo.png" alt="Logo" class="mchl">
+        <h1 class="org-name">Montessori Children's House of Learning Inc.</h1>
+      </div>
+
+      <div class="header-right">
+        <div class="notification-icon">
+          <img src="Photo/notif bell.png" alt="Notifications" class="bell-icon">
+        </div>
+        <img src="Photo/2x2.png" alt="Mr. Joshua" class="profile-image">
+        <div class="profile-details">
+          <span class="user-name">Mr. Joshua</span>
+          <span class="user-role">Admin </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+.icon-yellow {
+  color: #F59329; /* Add the hash symbol */
+  }
+</style>
+
+<aside class="sidebar">
+  <div class="sidebar-container">
+<ul>
+  <li><a href="Homepage.html"><i data-lucide="home" class="icon-yellow"></i> Home</a></li>
+  <li><a href="announcements.html"><i data-lucide="megaphone" class="icon-yellow"></i> Announcements</a></li>
+  <li><a href="calendar.html"><i data-lucide="folder" class="icon-yellow"></i> Student Account</a></li>
+  <li><a href="payments.html"><i data-lucide="credit-card" class="icon-yellow"></i> Payments</a></li>
+  <li><a href="enrollment.html"><i data-lucide="book-open" class="icon-yellow"></i> Enrollment</a></li>
+  <li><a href="settings.html"><i data-lucide="settings" class="icon-yellow"></i> Settings</a></li>
+</ul>
+
+
+    <ul class="logout-link">
+      <li><a href="#logout"><i data-lucide="log-out"></i> Logout</a></li>
+    </ul>
+
+  </div>
+</aside>
+
+<script>
+  // Ensure this runs after the icons are loaded in the DOM
+  lucide.createIcons();
+</script>
+<main class="main-wrapper">
+    <nav class="content">
+      <span><h1>Announcements</h1></span>
+    </nav>
+<div class="announcement-first-item">
+    <div class="badge-wrapper"> <span class="badge important">Important</span> <p class="date">March 5, 2025</p>
+    </div>
+    <div class="content-details">
+        <h2 class="title">Parent-Teach Conferences</h2>
+        <p class="description">Our annual parent-teacher conferences will be held by the school gym. Please be present and check for your assigned time slot.</p>
+    </div>
+</div>
+<div class="announcement-second-item">
+    <div class="badge-wrapper"> <span class="badge important">New</span> <p class="date">February 10, 2025</p>
+    </div>
+    <div class="content-details">
+        <h2 class="title">School Picnic Announcment</h2>
+        <p class="description">We are excited to announce a school picnic for all students and staff on March 6, 2025 at Eco Park.</p>
+    </div>
+</div>
+<!-- Container for announcements -->
+<div id="announcement-container"></div>
+
+<!-- Add button stays below -->
+ <div class="announcement-third-item">
+<button class="add-announcement-button" title="Add Announcement">+</button>
+</div>
+
+<!-- Popup form (initially hidden) -->
+<div id="popup-form" class="popup hidden">
+  <div class="popup-content">
+    <h3>Add New Announcement</h3>
+    <input type="date" id="popup-date" required>
+    <input type="text" id="popup-title" placeholder="Event Title" required>
+    <textarea id="popup-details" placeholder="Details" required></textarea>
+<div class="important-wrapper">
+  <label class="important-label">
+    <input type="checkbox" id="popup-important" />
+    <span>Important</span>
+  </label>
+</div>
+    <div class="popup-actions">
+      <button id="submit-announcement">Submit</button>
+      <button id="close-popup">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Announcement container -->
+<div id="announcement-container"></div>
+  </main>
+
+
+
+<!-- JavaScript to handle popup and announcement creation -->
+<script>
+const popup = document.getElementById('popup-form');
+const openBtn = document.querySelector('.add-announcement-button');
+const closeBtn = document.getElementById('close-popup');
+const submitBtn = document.getElementById('submit-announcement');
+const container = document.getElementById('announcement-container');
+
+openBtn.addEventListener('click', () => {
+  popup.classList.remove('hidden');
+});
+
+closeBtn.addEventListener('click', () => {
+  popup.classList.add('hidden');
+});
+
+submitBtn.addEventListener('click', () => {
+const rawDate = document.getElementById('popup-date').value;
+const date = new Date(rawDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+  const title = document.getElementById('popup-title').value;
+  const details = document.getElementById('popup-details').value;
+  const isImportant = document.getElementById('popup-important').checked;
+
+  if (!date || !title || !details) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  const newAnnouncement = document.createElement('div');
+  newAnnouncement.className = 'announcement-second-item';
+  newAnnouncement.innerHTML = `
+    <div class="badge-wrapper">
+      ${isImportant ? '<span class="badge important">Important</span>' : ''}
+      <p class="date">${date}</p>
+    </div>
+    <div class="content-details">
+      <h2 class="title">${title}</h2>
+      <p class="description">${details}</p>
+    </div>
+  `;
+
+  container.appendChild(newAnnouncement);
+  popup.classList.add('hidden');
+
+  // Clear form
+  document.getElementById('popup-date').value = '';
+  document.getElementById('popup-title').value = '';
+  document.getElementById('popup-details').value = '';
+  document.getElementById('popup-important').checked = false;
+});
+
+</script>

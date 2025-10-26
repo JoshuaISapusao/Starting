@@ -9,11 +9,11 @@
 <body>
   <main class="container">
     <div class="yellow">
-      <form action="" methods="POST">
-        <label for="name">Email:</label><br>
+      <form action="Homepage.html" method="POST">
+        <label for="name">ID:</label><br>
         <input type="text" id="name" name="name" required><br><br>
-            <label for="password" >Password: </label><br>
-                <input type="text"id="name" name=""name" required><br><br>
+          <label for="password">Password:</label><br>
+          <input type="password" id="password" name="password" required><br><br>
         <div class="form-actions">
           <button type="submit" class="login-btn">Log in</button>
             <a href="#" class="forgot">Forgot Password?</a>
@@ -27,5 +27,18 @@
       </section>
   </div>
 </main>
+<script>
+  document.querySelector('.login-btn').addEventListener('click', function(e) {
+    e.preventDefault(); // prevent form submission
+    const id = document.getElementById('name').value;
+    const password = document.getElementById('password').value;
+
+    if (id && password) {
+      window.location.href = 'Homepage.html'; // redirect
+    } else {
+      alert('Please enter both ID and password.');
+    }
+  });
+</script>
 </body>
 </html>
