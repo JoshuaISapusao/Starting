@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <title>MCHL Announcement</title>
+  <link rel="stylesheet" href="newstudent.css" />
+</head>
+<body>
+    
+  <!-- Header  -->
+  <header class="web-header">
+    <div class="yellow">
+      <div class="header-left">
+        <img src="Photo/mchl logo.png" alt="Logo" class="mchl">
+        <h1 class="org-name">Montessori Children's House of Learning Inc.</h1>
+      </div>
+
+      <div class="header-right">
+        <div class="notification-icon">
+          <img src="Photo/notif bell.png" alt="Notifications" class="bell-icon">
+        </div>
+        <img src="Photo/2x2.png" alt="Mr. Joshua" class="profile-image">
+        <div class="profile-details">
+          <span class="user-name">Mr. Joshua</span>
+          <span class="user-role">Admin </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+.icon-yellow {
+  color: #F59329; /* Add the hash symbol */
+  }
+</style>
+
+<aside class="sidebar">
+<div class="sidebar-container">
+<ul>
+  <li><a href="Homepage.html"><i data-lucide="home" class="icon-yellow"></i> Home</a></li>
+  <li><a href="announcements.html"><i data-lucide="megaphone" class="icon-yellow"></i> Announcements</a></li>
+  <li><a href="calendar.html"><i data-lucide="folder" class="icon-yellow"></i> Student Account</a></li>
+  <li><a href="payments.html"><i data-lucide="credit-card" class="icon-yellow"></i> Payments</a></li>
+  <li><a href="enrollment.html"><i data-lucide="book-open" class="icon-yellow"></i> Enrollment & Admission</a></li>
+<li><a href="settings.html"><i data-lucide="settings" class="icon-yellow"></i> Settings</a></li>
+</ul>
+
+
+    <ul class="logout-link">
+    <li><a href="Login.html"><i data-lucide="log-out"></i> Logout</a></li>
+    </ul>
+</div>
+</aside>
+
+<script>
+  // Ensure this runs after the icons are loaded in the DOM
+lucide.createIcons();
+</script>
+<main class="main-wrapper">
+  <nav class="content">
+    <h1>Manage Admissions Requirements</h1>
+    <button onclick="history.back()" class="back-button">← Go Back</button>
+  </nav>
+
+  <section class="student-list">
+    <section class="requirements-section">
+      <h2>Student Requirements</h2>
+      <ul class="requirements-list" id="requirements-list">
+        <li>
+          <span>Birth Certificate (PS/PreSchool)</span>
+          <div class="actions">
+            <button onclick="editRequirement(this)">Edit</button>
+              <button onclick="postRequirement()" class="post">Post</button>
+            <button onclick="deleteRequirement(this)">Delete</button>
+          </div>
+        </li>
+        <li>
+          <span>Report Card (for Grade School)</span>
+          <div class="actions">
+            <button onclick="editRequirement(this)">Edit</button>
+              <button onclick="postRequirement()" class="post">Post</button>
+            <button onclick="deleteRequirement(this)">Delete</button>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Add Requirement Button -->
+      <button onclick="openRequirementPopup()" class="add-button">+ Add Requirement</button>
+    </section>
+
+    <!-- Popup Modal -->
+    <div id="requirement-popup" class="popup-overlay">
+      <div class="popup-content">
+        <h2>Add New Requirement</h2>
+        <input type="text" id="requirement-input" placeholder="Enter requirement..." />
+        <div class="popup-actions">
+          <button onclick="saveRequirement()" class="save">Save</button>
+          <button onclick="closeRequirementPopup()" class="close">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <!-- Edit Requirement Popup -->
+<div id="edit-popup" class="popup-overlay">
+  <div class="popup-content">
+    <h2>Edit Requirement</h2>
+    <input type="text" id="edit-input" class="input" placeholder="Update requirement..." />
+    <div class="popup-actions">
+      <button onclick="updateRequirement()" class="save">Update</button>
+      <button onclick="closeEditPopup()" class="close">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+    <!-- New Admission Form -->
+    <div class="student-card verified">
+      <h2>New Admission Form</h2>
+      <div class="actions">
+        <a href="https://www.pinterest.com/pin/scribd--407435097521145814/" class="verified-label" target="_blank" rel="noopener noreferrer">
+          Enrollment Form
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+
+
+
+
+
+<script>function editRequirement(button) {
+  const item = button.closest('li');
+  const textSpan = item.querySelector('span');
+  const currentText = textSpan.textContent;
+
+  const newText = prompt("Edit requirement:", currentText);
+  if (newText !== null && newText.trim() !== "") {
+    textSpan.textContent = newText;
+  }
+}
+
+function deleteRequirement(button) {
+  const item = button.closest('li');
+  if (confirm("Are you sure you want to delete this requirement?")) {
+    item.remove();
+  }
+}
+function addRequirement() {
+  const list = document.getElementById('requirements-list');
+  const newText = prompt("Enter new requirement:");
+  if (newText && newText.trim() !== "") {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <span>${newText}</span>
+      <div class="actions">
+        <button onclick="editRequirement(this)">Edit</button>
+        <button onclick="deleteRequirement(this)">Delete</button>
+      </div>
+    `;
+    list.appendChild(li);
+  }
+}
+function openRequirementPopup() {
+  document.getElementById('requirement-popup').style.display = 'flex';
+}
+
+function closeRequirementPopup() {
+  document.getElementById('requirement-popup').style.display = 'none';
+  document.getElementById('requirement-input').value = '';
+}
+
+function saveRequirement() {
+  const input = document.getElementById('requirement-input');
+  const newText = input.value.trim();
+  if (newText !== "") {
+    const list = document.getElementById('requirements-list');
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <span>${newText}</span>
+      <div class="actions">
+        <button onclick="editRequirement(this)">Edit</button>
+        <button onclick="deleteRequirement(this)">Delete</button>
+      </div>
+    `;
+    list.appendChild(li);
+    closeRequirementPopup();
+  } else {
+    alert("Please enter a requirement.");
+  }
+}
+function postRequirement() {
+  const input = document.getElementById('requirement-input');
+  const newText = input.value.trim();
+  if (newText !== "") {
+    alert(`Posted: ${newText}`);
+    closeRequirementPopup();
+  } else {
+    alert("Please enter a requirement before posting.");
+  }
+}
+let currentEditItem = null;
+
+function editRequirement(button) {
+  currentEditItem = button.closest('li').querySelector('span');
+  document.getElementById('edit-input').value = currentEditItem.textContent;
+  document.getElementById('edit-popup').style.display = 'flex';
+}
+
+function updateRequirement() {
+  const newText = document.getElementById('edit-input').value.trim();
+  if (newText !== "") {
+    currentEditItem.textContent = newText;
+    closeEditPopup();
+  } else {
+    alert("Please enter a valid update.");
+  }
+}
+
+function closeEditPopup() {
+  document.getElementById('edit-popup').style.display = 'none';
+  document.getElementById('edit-input').value = '';
+}
+
+function saveRequirement() {
+  const input = document.getElementById('requirement-input');
+  const newText = input.value.trim();
+  if (newText !== "") {
+    const list = document.getElementById('requirements-list');
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <span>${newText}</span>
+      <div class="actions">
+        <button onclick="editRequirement(this)" class="edit-btn">Edit</button>
+        <button onclick="postRequirement(this)" class="post-btn">Post</button>
+        <button onclick="deleteRequirement(this)" class="delete-btn">Delete</button>
+      </div>
+    `;
+    list.appendChild(li);
+    closeRequirementPopup();
+  } else {
+    alert("Please enter a requirement.");
+  }
+}
+function postRequirement(button) {
+  const item = button.closest('li');
+  const text = item.querySelector('span').textContent;
+  alert(`Posted: ${text}`);
+}
+
+</script>
+

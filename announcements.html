@@ -45,13 +45,13 @@
   <li><a href="announcements.html"><i data-lucide="megaphone" class="icon-yellow"></i> Announcements</a></li>
   <li><a href="calendar.html"><i data-lucide="folder" class="icon-yellow"></i> Student Account</a></li>
   <li><a href="payments.html"><i data-lucide="credit-card" class="icon-yellow"></i> Payments</a></li>
-  <li><a href="enrollment.html"><i data-lucide="book-open" class="icon-yellow"></i> Enrollment</a></li>
+  <li><a href="enrollment.html"><i data-lucide="book-open" class="icon-yellow"></i> Enrollment & Admission</a></li>
   <li><a href="settings.html"><i data-lucide="settings" class="icon-yellow"></i> Settings</a></li>
 </ul>
 
 
     <ul class="logout-link">
-      <li><a href="#logout"><i data-lucide="log-out"></i> Logout</a></li>
+      <li><a href="Login.html"><i data-lucide="log-out"></i> Logout</a></li>
     </ul>
 
   </div>
@@ -66,20 +66,32 @@
       <span><h1>Announcements</h1></span>
     </nav>
 <div class="announcement-first-item">
-    <div class="badge-wrapper"> <span class="badge important">Important</span> <p class="date">March 5, 2025</p>
+  <div class="badge-wrapper">
+    <span class="badge important">Important</span>
+    <p class="date">March 5, 2025</p>
+  </div>
+  <div class="content-details">
+    <h2 class="title">Parent-Teacher Conferences</h2>
+    <p class="description">Our annual parent-teacher conferences will be held by the school gym. Please be present and check for your assigned time slot.</p>
+    <div class="announcement-actions">
+      <button class="edit-btn">Edit</button>
+      <button class="delete-btn">Delete</button>
     </div>
-    <div class="content-details">
-        <h2 class="title">Parent-Teach Conferences</h2>
-        <p class="description">Our annual parent-teacher conferences will be held by the school gym. Please be present and check for your assigned time slot.</p>
-    </div>
+  </div>
 </div>
 <div class="announcement-second-item">
-    <div class="badge-wrapper"> <span class="badge important">New</span> <p class="date">February 10, 2025</p>
+  <div class="badge-wrapper">
+    <span class="badge important">New</span>
+    <p class="date">February 10, 2025</p>
+  </div>
+  <div class="content-details">
+    <h2 class="title">School Picnic Announcement</h2>
+    <p class="description">We are excited to announce a school picnic for all students and staff on March 6, 2025 at Eco Park.</p>
+    <div class="announcement-actions">
+      <button class="edit-btn">Edit</button>
+      <button class="delete-btn">Delete</button>
     </div>
-    <div class="content-details">
-        <h2 class="title">School Picnic Announcment</h2>
-        <p class="description">We are excited to announce a school picnic for all students and staff on March 6, 2025 at Eco Park.</p>
-    </div>
+  </div>
 </div>
 <!-- Container for announcements -->
 <div id="announcement-container"></div>
@@ -114,8 +126,6 @@
   </main>
 
 
-
-<!-- JavaScript to handle popup and announcement creation -->
 <script>
 const popup = document.getElementById('popup-form');
 const openBtn = document.querySelector('.add-announcement-button');
@@ -123,33 +133,34 @@ const closeBtn = document.getElementById('close-popup');
 const submitBtn = document.getElementById('submit-announcement');
 const container = document.getElementById('announcement-container');
 
+let editingAnnouncement = null; // Track if we're editing
+
 openBtn.addEventListener('click', () => {
   popup.classList.remove('hidden');
 });
 
 closeBtn.addEventListener('click', () => {
   popup.classList.add('hidden');
+  editingAnnouncement = null;
 });
 
 submitBtn.addEventListener('click', () => {
-const rawDate = document.getElementById('popup-date').value;
-const date = new Date(rawDate).toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
+  const rawDate = document.getElementById('popup-date').value;
+  const date = new Date(rawDate).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
   const title = document.getElementById('popup-title').value;
   const details = document.getElementById('popup-details').value;
   const isImportant = document.getElementById('popup-important').checked;
 
-  if (!date || !title || !details) {
+  if (!rawDate || !title || !details) {
     alert("Please fill in all fields.");
     return;
   }
 
-  const newAnnouncement = document.createElement('div');
-  newAnnouncement.className = 'announcement-second-item';
-  newAnnouncement.innerHTML = `
+  const announcementHTML = `
     <div class="badge-wrapper">
       ${isImportant ? '<span class="badge important">Important</span>' : ''}
       <p class="date">${date}</p>
@@ -157,10 +168,28 @@ const date = new Date(rawDate).toLocaleDateString('en-US', {
     <div class="content-details">
       <h2 class="title">${title}</h2>
       <p class="description">${details}</p>
+      <div class="announcement-actions">
+        <button class="edit-btn">Edit</button>
+        <button class="delete-btn">Delete</button>
+      </div>
     </div>
   `;
 
-  container.appendChild(newAnnouncement);
+  let announcementElement;
+  if (editingAnnouncement) {
+    editingAnnouncement.innerHTML = announcementHTML;
+    announcementElement = editingAnnouncement;
+    editingAnnouncement = null;
+  } else {
+    announcementElement = document.createElement('div');
+    announcementElement.className = 'announcement-second-item';
+        announcementElement.className = 'announcement-first-item';
+    announcementElement.innerHTML = announcementHTML;
+    container.appendChild(announcementElement);
+  }
+
+  attachActionListeners(announcementElement);
+
   popup.classList.add('hidden');
 
   // Clear form
@@ -170,4 +199,37 @@ const date = new Date(rawDate).toLocaleDateString('en-US', {
   document.getElementById('popup-important').checked = false;
 });
 
+// 🔁 Attach Edit/Delete to any announcement block
+function attachActionListeners(element) {
+  const editBtn = element.querySelector('.edit-btn');
+  const deleteBtn = element.querySelector('.delete-btn');
+
+  if (editBtn && deleteBtn) {
+    editBtn.addEventListener('click', () => {
+      const dateText = element.querySelector('.date').textContent;
+      const titleText = element.querySelector('.title').textContent;
+      const detailsText = element.querySelector('.description').textContent;
+      const isImportantBadge = element.querySelector('.badge');
+
+      const parsedDate = new Date(dateText);
+      const isoDate = parsedDate.toISOString().split('T')[0];
+
+      document.getElementById('popup-date').value = isoDate;
+      document.getElementById('popup-title').value = titleText;
+      document.getElementById('popup-details').value = detailsText;
+      document.getElementById('popup-important').checked = isImportantBadge?.textContent === 'Important';
+
+      popup.classList.remove('hidden');
+      editingAnnouncement = element;
+    });
+
+    deleteBtn.addEventListener('click', () => {
+      element.remove();
+    });
+  }
+}
+
+// 🧩 Activate buttons for existing announcements
+document.querySelectorAll('.announcement-second-item').forEach(attachActionListeners);
+document.querySelectorAll('.announcement-First-item').forEach(attachActionListeners);
 </script>
