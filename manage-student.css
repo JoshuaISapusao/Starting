@@ -202,57 +202,118 @@ body {
     gap: 0;
     margin: 0;
   }
-   /* Wrapper and layout */
-   /* Wrapper and layout */
-  /* Wrapper and layout */
+/* ----------------------------- */
+/* Back Button */
+/* ----------------------------- */
 
-/* Container for cards */
-.on-container {
-  display: flex;
-  justify-content:baseline;
-  gap: 80px;
-  flex-wrap: wrap;
-}
-
-/* Card styles */
-.old-student,
-.new-student {
-  background-color: #fff;
-  border-radius: 20px;
-  box-shadow: 1px 1px 12px 9px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  width: 400px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  
-}
-
-/* Enlarged and centered label */
-.old-student h2,
-.new-student h2 {
-  font-size: x-large;
-  margin-bottom: 2rem;
-  color: #222;
-  
-}
-/* Button styles */
-.view-more {
-  background-color: #007bff;
-  color: white;
+.back-button {
+  display: inline-block;
+  margin-bottom:1rem;
+  padding: 0.5rem 1rem;
+  background-color:#e0e0e0;
+  color: rgb(0, 0, 0);
   border: none;
-  padding: 0.75rem 1.5rem;
   border-radius: 6px;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  text-decoration: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.view-more:hover {
-  background-color: #0056b3;
+.back-button:hover {
+  background-color: #7b7b7c;
 }
-a {
-  text-decoration: none; /* removes underline */
+
+/* ----------------------------- */
+/* MAIN MAIN MAIN MAIN MAIN MAIN MAIN */
+/* ----------------------------- */
+.balance-section {
+  margin-top: 10px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 1px 1px 12px 9px rgba(0, 0, 0, 0.1);
+  font-family: 'Montserrat', sans-serif;
+  width: 75%;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #333;
+  text-align: center;
+}
+
+.balance-card {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  background-color: #f3ecec;
+  
+}
+
+.balance-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+.balance-card input {
+  display: block;
+  width: 50%;
+  margin-bottom: 12px;
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.btn {
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #fff;
+}
+
+.btn.blue {
+  background-color: #2196F3;
+}
+
+.btn.blue:hover {
+  background-color: #1976D2;
+}
+
+.btn.yellow {
+  background-color: #FBC02D;
+  height: 40px;
+}
+
+.btn.yellow:hover {
+  background-color: #f9a825;
+}
+
+.btn.red {
+  background-color: #E53935;
+}
+
+.btn.red:hover {
+  background-color: #C62828;
+}
+
+.btn.large {
+  width: 20%;
+  padding: 14px;
+  font-size: 16px;
+}
+
+.save-area {
+  text-align: center;
+  margin-top: 40px;
 }

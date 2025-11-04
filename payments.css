@@ -202,57 +202,45 @@ body {
     gap: 0;
     margin: 0;
   }
-   /* Wrapper and layout */
-   /* Wrapper and layout */
-  /* Wrapper and layout */
-
-/* Container for cards */
-.on-container {
-  display: flex;
-  justify-content:baseline;
-  gap: 80px;
-  flex-wrap: wrap;
+    /* ----------------------------- */
+  /* Main */
+  /* ----------------------------- */
+.container {
+  font-size: medium;
+  color: #004080;
+  display: flex;              /* ✅ enables horizontal layout */
+  gap: 80px;                  /* ✅ spacing between items */
+  justify-content: baseline;   /* ✅ centers the row of items */
+  flex-wrap: wrap;           /* ✅ allows wrapping on smaller screens */
 }
-
-/* Card styles */
-.old-student,
-.new-student {
-  background-color: #fff;
+.first-item,
+.second-item,
+.third-item {
+ background-color: #fff;
   border-radius: 20px;
   box-shadow: 1px 1px 12px 9px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   width: 400px;
-  height: 300px;
+  height: 200px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  
+  align-items: center;        /* ✅ centers horizontally */
+  justify-content: center;   /* ✅ centers vertically */
+  text-align: center;        /* ✅ centers text inside */
 }
 
-/* Enlarged and centered label */
-.old-student h2,
-.new-student h2 {
-  font-size: x-large;
-  margin-bottom: 2rem;
-  color: #222;
-  
-}
-/* Button styles */
 .view-more {
+  display: inline-block;
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: medium;
   transition: background-color 0.3s ease;
 }
 
 .view-more:hover {
   background-color: #0056b3;
-}
-a {
-  text-decoration: none; /* removes underline */
 }

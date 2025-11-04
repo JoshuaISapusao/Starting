@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <title>MCHL Payments</title>
+  <link rel="stylesheet" href="manage-transaction.css" />
+</head>
+<body>
+    
+  <!-- Header  -->
+  <header class="web-header">
+    <div class="yellow">
+      <div class="header-left">
+        <img src="Photo/mchl logo.png" alt="Logo" class="mchl">
+        <h1 class="org-name">Montessori Children's House of Learning Inc.</h1>
+      </div>
+
+      <div class="header-right">
+        <div class="notification-icon">
+          <img src="Photo/notif bell.png" alt="Notifications" class="bell-icon">
+        </div>
+        <img src="Photo/2x2.png" alt="Mr. Joshua" class="profile-image">
+        <div class="profile-details">
+          <span class="user-name">Mr. Joshua</span>
+          <span class="user-role">Admin </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+.icon-yellow {
+  color: #F59329; /* Add the hash symbol */
+  }
+</style>
+
+<aside class="sidebar">
+<div class="sidebar-container">
+<ul>
+  <li><a href="Homepage.html"><i data-lucide="home" class="icon-yellow"></i> Home</a></li>
+  <li><a href="announcements.html"><i data-lucide="megaphone" class="icon-yellow"></i> Announcements</a></li>
+  <li><a href="calendar.html"><i data-lucide="folder" class="icon-yellow"></i> Student Account</a></li>
+  <li><a href="payments.html"><i data-lucide="credit-card" class="icon-yellow"></i> Payments</a></li>
+  <li><a href="enrollment.html"><i data-lucide="book-open" class="icon-yellow"></i> Enrollment & Admission</a></li>
+<li><a href="settings.html"><i data-lucide="settings" class="icon-yellow"></i> Settings</a></li>
+</ul>
+
+
+    <ul class="logout-link">
+    <li><a href="Login.html"><i data-lucide="log-out"></i> Logout</a></li>
+    </ul>
+</div>
+</aside>
+<script>
+  // Ensure this runs after the icons are loaded in the DOM
+lucide.createIcons();
+</script>
+<main class="main-wrapper">
+<nav class="content">
+    <h1>Manage Transaction History</h1>
+     <button onclick="history.back()" class="back-button">← Go Back</button>
+</nav>
+<section class="transaction-section">
+  <h2 class="section-title">Manage Transaction History</h2>
+
+  <!-- Download Transaction History -->
+  <div class="download-area">
+    <h3 class="sub-title">Download Transaction History</h3>
+    <table class="report-table">
+      <thead>
+        <tr>
+          <th>Report Name</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>All Transactions Report</td>
+          <td>2025-09-28</td>
+          <td><button class="download-btn">Download</button></td>
+        </tr>
+        <tr>
+          <td>Pending Payments Only</td>
+          <td>2025-09-20</td>
+          <td><button class="download-btn">Download</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- View Transaction History -->
+  <div class="view-area">
+    <h3 class="sub-title">View Transaction History</h3>
+    <table class="transaction-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Student ID</th>
+          <th>Method</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2025-09-25</td>
+          <td>STU-1001</td>
+          <td>Bank Transfer</td>
+          <td>₱5,000</td>
+          <td class="status verified">Verified</td>
+          <td><button class="view-btn">View</button></td>
+        </tr>
+        <tr>
+          <td>2025-09-20</td>
+          <td>STU-1002</td>
+          <td>QR Code</td>
+          <td>₱2,500</td>
+          <td class="status pending">Pending</td>
+          <td><button class="view-btn">View</button></td>
+        </tr>
+        <tr>
+          <td>2025-09-15</td>
+          <td>STU-1003</td>
+          <td>Credit Card</td>
+          <td>₱3,000</td>
+          <td class="status verified">Verified</td>
+          <td><button class="view-btn">View</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</main>
+</body>

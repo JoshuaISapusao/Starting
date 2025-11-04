@@ -202,57 +202,106 @@ body {
     gap: 0;
     margin: 0;
   }
-   /* Wrapper and layout */
-   /* Wrapper and layout */
-  /* Wrapper and layout */
 
-/* Container for cards */
-.on-container {
-  display: flex;
-  justify-content:baseline;
-  gap: 80px;
-  flex-wrap: wrap;
-}
-
-/* Card styles */
-.old-student,
-.new-student {
+  /* ----------------------------- */
+  /* MAIN MAIN MAIN MAIN MAIN MAIN */
+  /* ----------------------------- */
+  /* Management Reports Section */
+.report-section {
+  margin-top: 10px;
+  padding: 20px;
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 1px 1px 12px 9px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  width: 400px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  
+  font-family: 'Montserrat', sans-serif;
+  width: 75%;
 }
 
-/* Enlarged and centered label */
-.old-student h2,
-.new-student h2 {
-  font-size: x-large;
-  margin-bottom: 2rem;
-  color: #222;
-  
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
 }
-/* Button styles */
-.view-more {
-  background-color: #007bff;
-  color: white;
+
+/* Upload Button */
+.upload-area {
+  margin-bottom: 30px;
+}
+
+.upload-btn {
+  background-color: #FBC02D;
+  color: #fff;
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: 10px 18px;
+  font-size: 16px;
+  font-weight: 600;
   border-radius: 6px;
-  font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.view-more:hover {
-  background-color: #0056b3;
+.upload-btn:hover {
+  background-color: #f9a825;
 }
-a {
-  text-decoration: none; /* removes underline */
+
+/* Report Table */
+.download-area {
+  overflow-x: auto;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.report-table th,
+.report-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.report-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #555;
+}
+
+.download-btn {
+  background-color: #F59329;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: #e67e22;
+}
+/* ----------------------------- */
+/* Back Button */
+/* ----------------------------- */
+
+.back-button {
+  display: inline-block;
+  margin-bottom:1rem;
+  padding: 0.5rem 1rem;
+  background-color:#e0e0e0;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #7b7b7c;
 }

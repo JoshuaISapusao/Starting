@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <title>MCHL Payments</title>
+  <link rel="stylesheet" href="manage-report.css" />
+</head>
+<body>
+    
+  <!-- Header  -->
+  <header class="web-header">
+    <div class="yellow">
+      <div class="header-left">
+        <img src="Photo/mchl logo.png" alt="Logo" class="mchl">
+        <h1 class="org-name">Montessori Children's House of Learning Inc.</h1>
+      </div>
+
+      <div class="header-right">
+        <div class="notification-icon">
+          <img src="Photo/notif bell.png" alt="Notifications" class="bell-icon">
+        </div>
+        <img src="Photo/2x2.png" alt="Mr. Joshua" class="profile-image">
+        <div class="profile-details">
+          <span class="user-name">Mr. Joshua</span>
+          <span class="user-role">Admin </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+.icon-yellow {
+  color: #F59329; /* Add the hash symbol */
+  }
+</style>
+
+<aside class="sidebar">
+<div class="sidebar-container">
+<ul>
+  <li><a href="Homepage.html"><i data-lucide="home" class="icon-yellow"></i> Home</a></li>
+  <li><a href="announcements.html"><i data-lucide="megaphone" class="icon-yellow"></i> Announcements</a></li>
+  <li><a href="calendar.html"><i data-lucide="folder" class="icon-yellow"></i> Student Account</a></li>
+  <li><a href="payments.html"><i data-lucide="credit-card" class="icon-yellow"></i> Payments</a></li>
+  <li><a href="enrollment.html"><i data-lucide="book-open" class="icon-yellow"></i> Enrollment & Admission</a></li>
+<li><a href="settings.html"><i data-lucide="settings" class="icon-yellow"></i> Settings</a></li>
+</ul>
+
+
+    <ul class="logout-link">
+    <li><a href="Login.html"><i data-lucide="log-out"></i> Logout</a></li>
+    </ul>
+</div>
+</aside>
+<script>
+  // Ensure this runs after the icons are loaded in the DOM
+lucide.createIcons();
+</script>
+<main class="main-wrapper">
+<nav class="content">
+    <h1>Management Reports</h1>
+     <button onclick="history.back()" class="back-button">← Go Back</button>
+</nav>
+<section class="report-section">
+  <h2 class="section-title">Upload Reports</h2>
+
+<div class="upload-area">
+  <input type="file" id="reportFile" style="display: none;" />
+  <button class="upload-btn" id="uploadTrigger">Upload file</button>
+</div>
+
+  <!-- Download Section -->
+  <div class="download-area">
+    <table class="report-table">
+      <thead>
+        <tr>
+          <th>Report Name</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Monthly Finance Report</td>
+          <td>2025-09-01</td>
+          <td><button class="download-btn">Download</button></td>
+        </tr>
+        <tr>
+          <td>Quarterly Student Payments</td>
+          <td>2025-07-01</td>
+          <td><button class="download-btn">Download</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+    <!-- Trigger Button -->
+</main>
+</body>
+
+<script>
+  const uploadTrigger = document.getElementById('uploadTrigger');
+  const reportFile = document.getElementById('reportFile');
+
+  uploadTrigger.addEventListener('click', () => {
+    reportFile.click(); // Open file dialog
+  });
+
+  reportFile.addEventListener('change', () => {
+    if (reportFile.files.length === 0) {
+      alert('Please select a file to upload.');
+    } else {
+      const fileName = reportFile.files[0].name;
+      alert(`File "${fileName}" selected. Ready to upload!`);
+      // You can add actual upload logic here if needed
+    }
+  });
+</script>
