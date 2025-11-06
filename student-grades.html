@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <title>MCHL Payments</title>
+  <link rel="stylesheet" href="student-grades.css" />
+</head>
+<body>
+    
+  <!-- Header  -->
+  <header class="web-header">
+    <div class="yellow">
+      <div class="header-left">
+        <img src="Photo/mchl logo.png" alt="Logo" class="mchl">
+        <h1 class="org-name">Montessori Children's House of Learning Inc.</h1>
+      </div>
+
+      <div class="header-right">
+        <div class="notification-icon">
+          <img src="Photo/notif bell.png" alt="Notifications" class="bell-icon">
+        </div>
+        <img src="Photo/2x2.png" alt="Mr. Joshua" class="profile-image">
+        <div class="profile-details">
+          <span class="user-name">Mr. Joshua</span>
+          <span class="user-role">Admin </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+.icon-yellow {
+  color: #F59329; /* Add the hash symbol */
+  }
+</style>
+
+<aside class="sidebar">
+  <div class="sidebar-container">
+<ul>
+  <li><a href="Homepage.html"><i data-lucide="home" class="icon-yellow"></i> Home</a></li>
+  <li><a href="announcements.html"><i data-lucide="megaphone" class="icon-yellow"></i> Announcements</a></li>
+  <li><a href="student-account.html"><i data-lucide="folder" class="icon-yellow"></i> Student Account</a></li>
+  <li><a href="payments.html"><i data-lucide="credit-card" class="icon-yellow"></i> Payments</a></li>
+  <li><a href="enrollment.html"><i data-lucide="book-open" class="icon-yellow"></i> Enrollment & Admission</a></li>
+  <li><a href="settings.html"><i data-lucide="settings" class="icon-yellow"></i> Settings</a></li>
+</ul>
+
+    <ul class="logout-link">
+    <li><a href="Login.html"><i data-lucide="log-out"></i> Logout</a></li>
+    </ul>
+</div>
+</aside>
+<script>
+  // Ensure this runs after the icons are loaded in the DOM
+lucide.createIcons();
+</script><main class="main-wrapper">
+  <nav class="content">
+    <h1>Student Grades</h1>
+    <button onclick="history.back()" class="back-button">← Go Back</button>
+  </nav>
+<section class="section-cards">
+  <div class="card">
+    <h2>Charity</h2>
+    <button onclick="toggleStudents('charityList')">View Students</button>
+    <ul id="charityList" class="student-list hidden">
+      <li onclick="openGradePopup('Jared Oquindo')">Jared Oquindo</li>
+      <li onclick="openGradePopup('Yuan Maximus Piamonte')">Yuan Maximus Piamonte</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Perseverance</h2>
+    <button onclick="toggleStudents('perseveranceList')">View Students</button>
+    <ul id="perseveranceList" class="student-list hidden">
+      <li onclick="openGradePopup('Joshua Castaneda')">Joshua Castaneda</li>
+      <li onclick="openGradePopup('>Stevens Anthony Fabriga')">Stevens Anthony Fabriga</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Hope</h2>
+    <button onclick="toggleStudents('hopeList')">View Students</button>
+    <ul id="hopeList" class="student-list hidden">
+      <li onclick="openGradePopup('Vincent Dolera')">Vincent Dolera</li>
+      <li onclick="openGradePopup('James Maderazo')">James Maderazo</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Prudence</h2>
+    <button onclick="toggleStudents('prudenceList')">View Students</button>
+    <ul id="prudenceList" class="student-list hidden">
+      <li onclick="openGradePopup('Gabriel Paulo Rosales ')">Gabriel Paulo Rosales </li>
+      <li onclick="openGradePopup('Ralph Peter Rosales')">Ralph Peter Rosales</li>
+    </ul>
+  </div>
+</section>
+<div id="popupOverlay" class="overlay hidden"></div>
+
+<!-- Grade Entry Popup -->
+<div class="report-card popup hidden" id="gradePopup">
+  <h2>Grades & Report Card</h2>
+  <p id="selectedStudent" class="student-display"></p>
+
+  <div class="input-group">
+    <label for="subject">Subject</label>
+    <input type="text" id="subject" placeholder="Enter subject" />
+  </div>
+
+  <div class="input-group">
+    <label for="grade">Grade</label>
+    <input type="number" id="grade" placeholder="Enter grade" />
+  </div>
+
+  <button class="btn" onclick="addGrade()">Add Subject & Grade</button>
+
+  <div class="toggle-group">
+    <label for="toggleGrades">Show Grades</label>
+    <input type="checkbox" id="toggleGrades" checked onchange="toggleGrades()" />
+  </div>
+
+  <table id="gradesTable">
+    <thead>
+      <tr>
+        <th>Subject</th>
+        <th>Grade</th>
+      </tr>
+    </thead>
+    <tbody id="gradesBody"></tbody>
+  </table>
+
+  <button class="btn">Post Grades</button>
+  <button class="btn close-btn" onclick="closePopup()">Close</button>
+</div>
+
+</main>
+
+
+<script>
+  function toggleStudents(listId) {
+    const list = document.getElementById(listId);
+    list.classList.toggle('hidden');
+  }
+
+  function openGradePopup(studentName) {
+    document.getElementById('selectedStudent').textContent = `Student: ${studentName}`;
+    document.getElementById('gradePopup').classList.remove('hidden');
+  }
+
+  function closePopup() {
+    document.getElementById('gradePopup').classList.add('hidden');
+    document.getElementById('gradesBody').innerHTML = '';
+    document.getElementById('subject').value = '';
+    document.getElementById('grade').value = '';
+  }
+
+  function addGrade() {
+    const subject = document.getElementById('subject').value;
+    const grade = document.getElementById('grade').value;
+    if (subject && grade) {
+      const row = `<tr><td>${subject}</td><td>${grade}</td></tr>`;
+      document.getElementById('gradesBody').insertAdjacentHTML('beforeend', row);
+      document.getElementById('subject').value = '';
+      document.getElementById('grade').value = '';
+    }
+  }
+
+  function toggleGrades() {
+    const table = document.getElementById('gradesTable');
+    table.classList.toggle('hidden');
+  }
+  function openGradePopup(studentName) {
+    document.getElementById('selectedStudent').textContent = `Student: ${studentName}`;
+    document.getElementById('gradePopup').classList.remove('hidden');
+  }
+
+  function closePopup() {
+    document.getElementById('gradePopup').classList.add('hidden');
+    document.getElementById('gradesBody').innerHTML = '';
+    document.getElementById('subject').value = '';
+    document.getElementById('grade').value = '';
+  }
+
+  function addGrade() {
+    const subject = document.getElementById('subject').value;
+    const grade = document.getElementById('grade').value;
+    if (subject && grade) {
+      const row = `<tr><td>${subject}</td><td>${grade}</td></tr>`;
+      document.getElementById('gradesBody').insertAdjacentHTML('beforeend', row);
+      document.getElementById('subject').value = '';
+      document.getElementById('grade').value = '';
+    }
+  }
+
+  function toggleGrades() {
+    const table = document.getElementById('gradesTable');
+    table.classList.toggle('hidden');
+  }
+  function openGradePopup(studentName) {
+    document.getElementById('selectedStudent').textContent = `Student: ${studentName}`;
+    document.getElementById('gradePopup').classList.remove('hidden');
+    document.getElementById('popupOverlay').classList.remove('hidden');
+  }
+
+  function closePopup() {
+    document.getElementById('gradePopup').classList.add('hidden');
+    document.getElementById('popupOverlay').classList.add('hidden');
+    document.getElementById('gradesBody').innerHTML = '';
+    document.getElementById('subject').value = '';
+    document.getElementById('grade').value = '';
+  }
+</script>
+</body>
+</html>

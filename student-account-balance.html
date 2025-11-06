@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <title>MCHL Payments</title>
+  <link rel="stylesheet" href="student-account-balance.css" />
+</head>
+<body>
+    
+  <!-- Header  -->
+  <header class="web-header">
+    <div class="yellow">
+      <div class="header-left">
+        <img src="Photo/mchl logo.png" alt="Logo" class="mchl">
+        <h1 class="org-name">Montessori Children's House of Learning Inc.</h1>
+      </div>
+
+      <div class="header-right">
+        <div class="notification-icon">
+          <img src="Photo/notif bell.png" alt="Notifications" class="bell-icon">
+        </div>
+        <img src="Photo/2x2.png" alt="Mr. Joshua" class="profile-image">
+        <div class="profile-details">
+          <span class="user-name">Mr. Joshua</span>
+          <span class="user-role">Admin </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+.icon-yellow {
+  color: #F59329; /* Add the hash symbol */
+  }
+</style>
+
+<aside class="sidebar">
+  <div class="sidebar-container">
+<ul>
+  <li><a href="Homepage.html"><i data-lucide="home" class="icon-yellow"></i> Home</a></li>
+  <li><a href="announcements.html"><i data-lucide="megaphone" class="icon-yellow"></i> Announcements</a></li>
+  <li><a href="student-account.html"><i data-lucide="folder" class="icon-yellow"></i> Student Account</a></li>
+  <li><a href="payments.html"><i data-lucide="credit-card" class="icon-yellow"></i> Payments</a></li>
+  <li><a href="enrollment.html"><i data-lucide="book-open" class="icon-yellow"></i> Enrollment & Admission</a></li>
+  <li><a href="settings.html"><i data-lucide="settings" class="icon-yellow"></i> Settings</a></li>
+</ul>
+
+    <ul class="logout-link">
+    <li><a href="Login.html"><i data-lucide="log-out"></i> Logout</a></li>
+    </ul>
+</div>
+</aside>
+<script>
+  // Ensure this runs after the icons are loaded in the DOM
+lucide.createIcons();
+</script>
+<main class="main-wrapper">
+<nav class="content">
+    <h1>Student Account Balance</h1>
+    <button onclick="window.location.href='student-account.html'" class="back-Button">← Go Back</button>
+</nav>
+<div class="tuition-card">
+<div class="search-section">
+  <h2>Search Student</h2>
+  <input type="text" id="studentSearchInput" placeholder="Enter student name..." />
+  <button onclick="loadStudentBalance()">Search</button>
+</div>
+
+  <label>Outstanding Balance:</label>
+  <input type="number" id="balanceInput" value="5000" />
+
+  <button class="pay-button">Pay Now</button>
+
+  <h3>Tuition Breakdown</h3>
+  <div id="tuitionBreakdown">
+    <div class="tuition-item">
+      <input type="text" value="Tuition - 1st Quarter" />
+      <input type="date" value="2025-08-01" />
+      <select>
+        <option>Card</option>
+        <option>Cash</option>
+        <option>Bank Transfer</option>
+      </select>
+      <input type="number" value="3200" />
+      <button onclick="removeItem(this)">Remove</button>
+    </div>
+
+    <div class="tuition-item">
+      <input type="text" value="Tuition - 1st Quarter" />
+      <input type="date" value="2025-08-15" />
+      <select>
+        <option>Card</option>
+        <option selected>Cash</option>
+        <option>Bank Transfer</option>
+      </select>
+      <input type="number" value="2500" />
+      <button onclick="removeItem(this)">Remove</button>
+    </div>
+  </div>
+
+  <button onclick="addItem()"> Add Payment</button>
+  <button onclick="saveTuition()"> Save Changes</button>
+</div>
+</main>
+</body>
+<script>
+function addItem() {
+  const container = document.getElementById("tuitionBreakdown");
+  const div = document.createElement("div");
+  div.className = "tuition-item";
+  div.innerHTML = `
+    <input type="text" placeholder="Description" />
+    <input type="date" />
+    <select>
+      <option>Card</option>
+      <option>Cash</option>
+      <option>Bank Transfer</option>
+    </select>
+    <input type="number" placeholder="Amount" />
+    <button onclick="removeItem(this)">Remove</button>
+  `;
+  container.appendChild(div);
+}
+
+function removeItem(btn) {
+  btn.parentElement.remove();
+}
+
+function saveTuition() {
+  const items = document.querySelectorAll(".tuition-item");
+  let total = 0;
+  items.forEach(item => {
+    const amount = parseFloat(item.querySelector('input[type="number"]').value) || 0;
+    total += amount;
+  });
+
+  const balanceInput = document.getElementById("balanceInput");
+  balanceInput.value = Math.max(0, 10000 - total); // Example logic: total tuition = ₱10,000
+  alert("Tuition breakdown saved. Remaining balance recalculated.");
+}
+const studentBalances = {
+  "Jared Oquindo": {
+    balance: 5000,
+    payments: [
+      { desc: "Tuition - 1st Quarter", date: "2025-08-01", method: "Card", amount: 3200 },
+      { desc: "Tuition - 1st Quarter", date: "2025-08-15", method: "Cash", amount: 2500 }
+    ]
+  },
+  "James Maderazo": {
+    balance: 2500,
+    payments: [
+      { desc: "Tuition - 2nd Quarter", date: "2025-09-01", method: "Cash", amount: 2500 }
+    ]
+  },
+  "Joshua Castaneda": {
+    balance: 7000,
+    payments: [
+      { desc: "Tuition - 1st Quarter", date: "2025-08-10", method: "Bank Transfer", amount: 3000 }
+    ]
+  }
+};
+
+function loadStudentBalance() {
+  const name = document.getElementById("studentSearchInput").value.trim();
+  const student = studentBalances[name];
+
+  if (!student) {
+    alert("Student not found.");
+    return;
+  }
+
+  document.getElementById("balanceInput").value = student.balance;
+
+  const container = document.getElementById("tuitionBreakdown");
+  container.innerHTML = ""; // Clear previous entries
+
+  student.payments.forEach(payment => {
+    const div = document.createElement("div");
+    div.className = "tuition-item";
+    div.innerHTML = `
+      <input type="text" value="${payment.desc}" />
+      <input type="date" value="${payment.date}" />
+      <select>
+        <option ${payment.method === "Card" ? "selected" : ""}>Card</option>
+        <option ${payment.method === "Cash" ? "selected" : ""}>Cash</option>
+        <option ${payment.method === "Bank Transfer" ? "selected" : ""}>Bank Transfer</option>
+      </select>
+      <input type="number" value="${payment.amount}" />
+      <button onclick="removeItem(this)">Remove</button>
+    `;
+    container.appendChild(div);
+  });
+}
+</script>
+
+
+

@@ -1,0 +1,310 @@
+/* ----------------------------- */
+/* Body & Main Layout */
+/* ----------------------------- */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif; 
+}
+body {
+  display: flex;
+  flex-wrap: wrap; 
+  padding: 1px;
+  gap: 15px;
+}
+/* ----------------------------- */
+/* Header */
+/* ----------------------------- */
+
+.web-header {
+  flex-basis: 102%;
+  margin: -1px -1px 0 -1px;
+  width: calc(100% + 30px);
+  gap:0 
+} 
+body {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 0;        
+  column-gap: 15px;  
+  padding: 0;        
+  margin: 0;        
+}
+
+.web-header {
+  flex-basis: 100%;  
+  margin: 0;         
+  width: 100%;
+}
+
+.yellow {
+  background-color: #F8C041;
+  padding: 10px 30px;   
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  height: 120px;
+  flex-wrap: wrap;
+  margin: 0;            
+}
+
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size:small;
+  flex-wrap: wrap;
+    margin: 0;
+
+}
+
+.mchl {
+    margin: 0;
+
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  object-fit:cover;
+  background-color: white;
+}
+.org-name {
+    margin: 0;
+
+  font-size: 1.3em;
+  color: #004080;
+}
+.bell-icon {
+  width: 50px;
+  height: 50px;
+}
+.profile-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+  color: #000000;
+  justify-content: center;
+}
+.user-name {
+  font-weight: bold;
+  font-size:small;
+}
+.user-role {
+  font-size: small;
+  font-size:small;
+  font-weight: bold;
+}
+  /* ----------------------------- */
+  /* Sidebar */
+  /* ----------------------------- */
+  /* ----------------------------- */
+  
+.sidebar {  
+  flex: 1 1 250px;
+  font-weight: bold;
+  margin: 0;  
+  gap: 0;
+  
+}
+  .sidebar-container ul {
+    list-style: none;
+    padding: 0;
+    margin-left: 5%;
+    font-size: large;
+    text-align:justify;
+    flex-grow: 1;
+    align-items:end;
+  }
+  .sidebar-container ul li {
+    margin-bottom: 25px;
+  }
+  .sidebar-container ul li a {
+    display: block;
+    text-decoration: none;
+    color:#004080;
+    padding: 10px 15px;
+    border-radius: 8px;
+  }
+  .sidebar-container ul li a:hover,
+  .sidebar-container ul li a.active { /* <-- This selector handles the active state */
+    background-color:#F8C041;
+    color: rgb(255, 255, 255);
+    width: 80%;
+  }
+  .sidebar-container .logout-link {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: small;
+    margin-top: auto;
+  }
+  .icon-yellow {
+
+      color: #F59329; /* Or use a hex code like #FFFF00 for a specific shade of yellow */
+
+    }
+  /* ----------------------------- */
+  /* Logout Section Container */
+  /* ----------------------------- */
+  .sidebar-container .logout-link {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size:small;
+    margin-top: 70%;
+    display: flex;
+    justify-content: center;
+  }
+  /* ----------------------------- */
+  /* Logout Link Styling: The Base Button (RED) */
+  /* ----------------------------- */
+
+  .sidebar-container .logout-link li a {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    background-color: #E63D4D;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    margin-left: -50%;
+    border-radius: 8px;
+    width: 200%;
+  }
+  .sidebar-container .logout-link li a:hover {
+    background-color: #CC2C3C;
+    color: white;
+    transform: scale(1.02);
+    width: 200%;
+  } 
+/* ----------------------------- */
+/* Back Button */
+/* ----------------------------- */
+
+.back-button {
+  display: inline-block;
+  margin-bottom:1rem;
+  padding: 0.5rem 1rem;
+  background-color:#e0e0e0;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #7b7b7c;
+}
+
+  .main-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 3 1 60%;
+    min-width: 300px;
+  }
+  .content {
+    font-size: x-large;
+    color: #004080;
+  }
+/* ----------------------------- */
+/* MAIN MAIN MAIN  */
+/* ----------------------------- */
+  .admin-dashboard {
+  max-width: 60%;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 1px 1px 12px 9px rgba(0, 0, 0, 0.1);
+  justify-content:flex-start;
+  
+}
+.search-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+}
+
+.search-bar button {
+  padding: 0.5rem 1rem;
+  background-color: #0078d4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.student-info-card h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+#studentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+#studentForm label {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+#studentForm input[type="text"],
+#studentForm input[type="email"] {
+  padding: 0.5rem;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+}
+
+.requirements-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.action-buttons button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.action-buttons button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+}
+
+.action-buttons .deactivate {
+  background-color: #dc3545;
+  color: white;
+}

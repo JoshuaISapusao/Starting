@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <title>MCHL Payments</title>
+  <link rel="stylesheet" href="manage-account.css" />
+</head>
+<body>
+    
+  <!-- Header  -->
+  <header class="web-header">
+    <div class="yellow">
+      <div class="header-left">
+        <img src="Photo/mchl logo.png" alt="Logo" class="mchl">
+        <h1 class="org-name">Montessori Children's House of Learning Inc.</h1>
+      </div>
+
+      <div class="header-right">
+        <div class="notification-icon">
+          <img src="Photo/notif bell.png" alt="Notifications" class="bell-icon">
+        </div>
+        <img src="Photo/2x2.png" alt="Mr. Joshua" class="profile-image">
+        <div class="profile-details">
+          <span class="user-name">Mr. Joshua</span>
+          <span class="user-role">Admin </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+.icon-yellow {
+  color: #F59329; /* Add the hash symbol */
+  }
+</style>
+
+<aside class="sidebar">
+  <div class="sidebar-container">
+<ul>
+  <li><a href="Homepage.html"><i data-lucide="home" class="icon-yellow"></i> Home</a></li>
+  <li><a href="announcements.html"><i data-lucide="megaphone" class="icon-yellow"></i> Announcements</a></li>
+  <li><a href="student-account.html"><i data-lucide="folder" class="icon-yellow"></i> Student Account</a></li>
+  <li><a href="payments.html"><i data-lucide="credit-card" class="icon-yellow"></i> Payments</a></li>
+  <li><a href="enrollment.html"><i data-lucide="book-open" class="icon-yellow"></i> Enrollment & Admission</a></li>
+  <li><a href="settings.html"><i data-lucide="settings" class="icon-yellow"></i> Settings</a></li>
+</ul>
+
+    <ul class="logout-link">
+    <li><a href="Login.html"><i data-lucide="log-out"></i> Logout</a></li>
+    </ul>
+</div>
+</aside>
+<script>
+  // Ensure this runs after the icons are loaded in the DOM
+lucide.createIcons();
+</script>
+<main class="main-wrapper">
+<nav class="content">
+    <h1>Manage Student Account</h1>
+     <button onclick="window.location.href='student-account.html'" class="back-button">← Go Back</button>
+</nav>
+<div class="admin-dashboard">
+  <!-- Search Section -->
+  <div class="search-bar">
+    <input type="text" placeholder="Search student by name..." id="searchInput" />
+    <button onclick="searchStudent()">Search</button>
+  </div>
+
+  <!-- Student Info Section -->
+  <div class="student-info-card">
+    <h2>Student Account</h2>
+    <form id="studentForm">
+      <label>Full Name</label>
+      <input type="text" value="Juan Dela Cruz" />
+
+      <label>Student ID</label>
+      <input type="text" value="2025-001" />
+
+      <label>Email</label>
+      <input type="email" value="juan@example.com" />
+
+      <label>Contact</label>
+      <input type="text" value="+63 912 345 6789" />
+
+      <label>School Requirements</label>
+      <div class="requirements-list">
+        <label><input type="checkbox" checked /> Birth Certificate</label>
+        <label><input type="checkbox" checked /> Report Card</label>
+        <label><input type="checkbox" /> Medical Clearance</label>
+        <label><input type="checkbox" checked /> Enrollment Form</label>
+      </div>
+
+      <div class="action-buttons">
+        <button type="submit">Save Changes</button>
+        <button type="button" class="deactivate">Deactivate Account</button>
+      </div>
+    </form>
+  </div>
+</div>
+</main>
+</body>
+<script>
+const students = {
+  "Jared Oquindo": {
+    id: "2025-001",
+    email: "jared@example.com",
+    contact: "+63 912 345 6789",
+    requirements: {
+      birthCert: true,
+      reportCard: true,
+      medicalClearance: false,
+      enrollmentForm: true
+    }
+  },
+  "Yuan Maximus Piamonte": {
+    id: "2025-002",
+    email: "ymaximus@example.com",
+    contact: "+63 915 222 3344",
+    requirements: {
+      birthCert: true,
+      reportCard: true,
+      medicalClearance: true,
+      enrollmentForm: true
+    }
+  },
+  "Joshua Castaneda": {
+    id: "2025-003",
+    email: "joshua@example.com",
+    contact: "+63 917 555 6677",
+    requirements: {
+      birthCert: true,
+      reportCard: false,
+      medicalClearance: true,
+      enrollmentForm: false
+    }
+  },
+  "Stevens Anthony Fabriga": {
+    id: "2025-004",
+    email: "stevens@example.com",
+    contact: "+63 918 888 9999",
+    requirements: {
+      birthCert: true,
+      reportCard: true,
+      medicalClearance: true,
+      enrollmentForm: true
+    }
+  },
+  "James Maderazo": {
+    id: "2025-005",
+    email: "james@example.com",
+    contact: "+63 919 111 2233",
+    requirements: {
+      birthCert: false,
+      reportCard: true,
+      medicalClearance: false,
+      enrollmentForm: true
+    }
+  }
+};
+
+function searchStudent() {
+  const name = document.getElementById("searchInput").value.trim();
+  const student = students[name];
+
+  if (!student) {
+    alert("Student not found.");
+    return;
+  }
+
+  const form = document.getElementById("studentForm");
+  form.querySelector('input[type="text"]').value = name;
+  form.querySelectorAll('input')[1].value = student.id;
+  form.querySelectorAll('input')[2].value = student.email;
+  form.querySelectorAll('input')[3].value = student.contact;
+
+  const reqs = student.requirements;
+  form.querySelectorAll('.requirements-list input')[0].checked = reqs.birthCert;
+  form.querySelectorAll('.requirements-list input')[1].checked = reqs.reportCard;
+  form.querySelectorAll('.requirements-list input')[2].checked = reqs.medicalClearance;
+  form.querySelectorAll('.requirements-list input')[3].checked = reqs.enrollmentForm;
+}
+</script>
+</html>
